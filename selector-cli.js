@@ -1,8 +1,7 @@
 const https = require("https");
 const fs = require("fs");
 
-/* responseJson will hold the parsed Json object; result will contain the individual instances of the selector input into the console
-let responseJson; */
+/* responseJson will hold the parsed Json object; result will contain the individual instances of the selector input into the console */
 
 /* for the purposes of using only core node modules, I used 'https' to request the json data. Normally I would use 'fetch' with async/await syntax */
 https
@@ -38,7 +37,7 @@ const readline = require("readline").createInterface({
   output: process.stdout
 });
 
-/* tests whether the tip of the obj branch matches the user input; I was unsure what exactly I should display to the console, so I decided to show the block of keys level to the targeted selector */
+/* receives branch ends; tests whether it includes user's input user input; I was unsure what I should display to the console, but decided to show the block of keys level to the targeted selector */
 const testSelector = (obj, k, selector) => {
   if (selector === "classNames" && obj.classNames && obj.classNames.includes(k))
     result.push(obj);
@@ -48,7 +47,7 @@ const testSelector = (obj, k, selector) => {
     result.push(obj);
 };
 
-/* receives enterSelector()'s arguments; which traverses the JSON object recursively, throwing any obj-key endpoints/deadends to testSelector to test for inclusion in the result array based on original user input */
+/* receives enterSelector()'s arguments; function traverses the JSON object recursively, throwing any obj-key endpoints/deadends to testSelector() */
 const findSelectors = (obj, k, selector) => {
   // conditional inclusive of both Arrays and Objects
   if (obj instanceof Object) {
@@ -62,9 +61,10 @@ const findSelectors = (obj, k, selector) => {
   return result;
 };
 
-/* the visuals directing the user to enter a css selector; based on the selection, the relevant arguments are passed to findSelector() */
+/* User promot; based on the input, relevant arguments are passed to findSelector() */
 const enterSelector = () => {
-  /* reset array to empty so each typed selector is not an aggregate of previous selectors input by the user */
+  /* reset array to empty so each output is not an aggregate of previous
+  inputs */
   result = [];
   readline.question(`Enter a selector or type exit to close: `, input => {
     if (input === "exit") return readline.close();
