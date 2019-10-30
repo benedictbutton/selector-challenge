@@ -1,9 +1,11 @@
+"use strict";
 const https = require("https");
 const fs = require("fs");
 
 /* responseJson will hold the parsed Json object; result will contain the individual instances of the selector input into the console */
 
 /* for the purposes of using only core node modules, I used 'https' to request the json data. Normally I would use 'fetch' with async/await syntax */
+let responseJson;
 https
   .get(
     "https://raw.githubusercontent.com/jdolan/quetoo/master/src/cgame/default/ui/settings/SystemViewController.json",
@@ -63,7 +65,7 @@ const findSelectors = (obj, k, selector) => {
 
 /* User promot; based on the input, relevant arguments are passed to findSelector() */
 const enterSelector = () => {
-  /* reset array to empty so each output is not an aggregate of previous
+  /* reset array so each output is not an aggregate of previous
   inputs */
   result = [];
   readline.question(`Enter a selector or type exit to close: `, input => {
