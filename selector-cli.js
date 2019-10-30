@@ -41,12 +41,9 @@ const readline = require("readline").createInterface({
 
 /* receives branch ends; tests whether it includes user's input user input; I was unsure what I should display to the console, but decided to show the block of keys level to the targeted selector */
 const testSelector = (obj, k, selector) => {
-  if (selector === "classNames" && obj.classNames && obj.classNames.includes(k))
+  if (obj[selector] instanceof Array && obj[selector].includes(k))
     result.push(obj);
-  else if (selector === "class" && obj.class && obj.class === k)
-    result.push(obj);
-  else if (selector === "identifier" && obj.identifier && obj.identifier === k)
-    result.push(obj);
+  else if (obj[selector] && obj[selector] === k) result.push(obj);
 };
 
 /* receives enterSelector()'s arguments; function traverses the JSON object recursively, throwing any obj-key endpoints/deadends to testSelector() */
