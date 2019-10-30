@@ -2,7 +2,7 @@
 const https = require("https");
 const fs = require("fs");
 
-/* responseJson will hold the parsed Json object; result will contain the individual instances of the selector input into the console */
+// responseJson will globally hold the parsed Json object
 
 /* for the purposes of using only core node modules, I used 'https' to request the json data. Normally I would use 'fetch' with async/await syntax */
 let responseJson;
