@@ -43,10 +43,7 @@ const readline = require("readline").createInterface({
 const testSelector = (obj, k, selector) => {
   if (selector === "classNames" && obj.classNames && obj.classNames.includes(k))
     result.push(obj);
-  else if (selector === "class" && obj["class"] && obj["class"] === k)
-    result.push(obj);
-  else if (selector === "identifier" && obj.identifier && obj.identifier === k)
-    result.push(obj);
+  else if (obj.selector && obj.selector === k) result.push(obj);
 };
 
 /* receives enterSelector()'s arguments; function traverses the JSON object recursively, throwing any obj-key endpoints/deadends to testSelector() */
