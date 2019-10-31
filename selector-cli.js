@@ -39,14 +39,14 @@ const readline = require("readline").createInterface({
   output: process.stdout
 });
 
-/* receives branch ends; tests whether it includes user's input user input; I was unsure what I should display to the console, but decided to show the block of keys level to the targeted selector */
+/* receives branch ends; tests whether it includes user's input; I was unsure what I should display to the console, but decided to show the block of keys level to the targeted selector */
 const testSelector = (obj, k, selector) => {
   if (obj[selector] instanceof Array && obj[selector].includes(k))
     result.push(obj);
   else if (obj[selector] && obj[selector] === k) result.push(obj);
 };
 
-/* receives enterSelector()'s arguments; function traverses the JSON object recursively, throwing any obj-key endpoints/deadends to testSelector() */
+/* receives enterSelector()'s arguments; function traverses the JSON object recursively, throwing any obj-key pairs to testSelector(), and stepping forward in the obj if the branch extends further */
 const findSelectors = (obj, k, selector) => {
   // conditional inclusive of both Arrays and Objects
   if (obj instanceof Object) {
@@ -60,7 +60,7 @@ const findSelectors = (obj, k, selector) => {
   return result;
 };
 
-/* User promot; based on the input, relevant arguments are passed to findSelector() */
+/* User prompt; based on the input, relevant arguments are passed to findSelector() */
 const enterSelector = () => {
   /* reset array so each output is not an aggregate of previous
   inputs */
